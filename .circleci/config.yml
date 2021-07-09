@@ -70,7 +70,7 @@ jobs:
           command: |
             # unsecure, do not use
             # docker login -u networkingcat -p ${DOCKER_PASSWORD}
-            echo $DOCKER_PASS | docker login -u networkingcat --password-stdin
+            echo $DOCKER_PASSWORD | docker login -u networkingcat --password-stdin
             docker build -t networkingcat/hello_world:${CIRCLE_BUILD_NUM} .
             docker push networkingcat/hello_world:${CIRCLE_BUILD_NUM}
             docker tag networkingcat/hello_world:${CIRCLE_BUILD_NUM} networkingcat/hello_world:latest
