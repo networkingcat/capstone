@@ -35,9 +35,9 @@ jobs:
             . venv/bin/activate
             make lint
             
-workflows:
-  deployment:
-    jobs:
-      - linting
+#workflows:
+#  deployment:
+#    jobs:
+#      - linting
       #- test-frontend:
       #    requires: [build-frontend]   
