@@ -32,3 +32,10 @@ jobs:
           command: |
             . venv/bin/activate
             make lint
+            
+workflows:
+  default:
+    jobs:
+      - build
+      #- test-frontend:
+      #    requires: [build-frontend]            
