@@ -2,7 +2,7 @@ setup:
 	# Create python virtualenv & source it
 	# source ~/.devops/bin/activate
 	python3 -m venv ~/.helloworld
-        source ./env/bin/activate 
+	source ./env/bin/activate 
 
 install:
 	# This should be run from inside a virtualenv
