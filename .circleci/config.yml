@@ -34,7 +34,25 @@ jobs:
           command: |
             . venv/bin/activate
             make lint
-            
+        
+  docker_stuff:
+    docker:
+      - image: python:3.7.3-stretch  
+    working_directory: ~/app
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 19.03.13
+      - run:
+          name: Build docker image and upload
+          command: |
+            docker login -u networkingcat -p ${DOCKER_PWD}
+            docker build -t networkingcat/hello_world:${$CIRCLE_BUILD_NUM} .
+            docker push networkingcat/hello_world:${$CIRCLE_BUILD_NUM}
+            docker tag networkingcat/hello_world:${$CIRCLE_BUILD_NUM} networkingcat/hello_world:latest
+            docker push networkingcat/hello_world:latest
+
+
 #workflows:
 #  deployment:
 #    jobs:
