@@ -52,9 +52,9 @@ jobs:
 #          name: Build docker image and upload
 #          command: |
 #            docker login -u networkingcat -p ${DOCKER_PWD}
-#            docker build -t networkingcat/hello_world:${$CIRCLE_BUILD_NUM} .
-#            docker push networkingcat/hello_world:${$CIRCLE_BUILD_NUM}
-#            docker tag networkingcat/hello_world:${$CIRCLE_BUILD_NUM} networkingcat/hello_world:latest
+#            docker build -t networkingcat/hello_world:${CIRCLE_BUILD_NUM} .
+#            docker push networkingcat/hello_world:${CIRCLE_BUILD_NUM}
+#            docker tag networkingcat/hello_world:${CIRCLE_BUILD_NUM} networkingcat/hello_world:latest
 #            docker push networkingcat/hello_world:latest
 
 
@@ -70,11 +70,10 @@ jobs:
           command: |
             # unsecure, do not use
             # docker login -u networkingcat -p ${DOCKER_PASSWORD}
-            bash
             echo $DOCKER_PASS | docker login -u networkingcat --password-stdin
-            docker build -t networkingcat/hello_world:${$CIRCLE_BUILD_NUM} .
-            docker push networkingcat/hello_world:${$CIRCLE_BUILD_NUM}
-            docker tag networkingcat/hello_world:${$CIRCLE_BUILD_NUM} networkingcat/hello_world:latest
+            docker build -t networkingcat/hello_world:${CIRCLE_BUILD_NUM} .
+            docker push networkingcat/hello_world:${CIRCLE_BUILD_NUM}
+            docker tag networkingcat/hello_world:${CIRCLE_BUILD_NUM} networkingcat/hello_world:latest
             docker push networkingcat/hello_world:latest
 
 
