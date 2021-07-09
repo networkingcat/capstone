@@ -3,13 +3,13 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-  return "Hello from Germany"
+    return "Hello from Germany"
 
 @app.route("/udacity")
-def hello():
-  return "Udacity Capstone Project"
+def udacity():
+    return "Udacity Capstone Project"
 
 
 
 if __name__ == "__main__":
-  app.run()
+    app.run()
