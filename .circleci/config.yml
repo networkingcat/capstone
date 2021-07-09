@@ -53,9 +53,9 @@ jobs:
             docker push networkingcat/hello_world:latest
 
 
-#workflows:
-#  deployment:
-#    jobs:
-#      - linting
-      #- test-frontend:
-      #    requires: [build-frontend]   
+workflows:
+  deployment:
+    jobs:
+      - build
+      - docker_stuff:
+          requires: [build]   
