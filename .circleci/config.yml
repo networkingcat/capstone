@@ -2,6 +2,7 @@
 #
 # Check https://circleci.com/docs/2.0/language-python/ for more details
 version: 2
+
 jobs:
   build:
     docker:
@@ -25,6 +26,8 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             make install
+            
+          
       - save_cache:
           paths:
             - ./venv
