@@ -68,7 +68,7 @@ jobs:
       - run:
           name: Build docker image and upload
           command: |
-            docker login -u networkingcat -p ${DOCKER_PWD}
+            docker login -u networkingcat -p ${DOCKER_PASSWORD}
             docker build -t networkingcat/hello_world:${$CIRCLE_BUILD_NUM} .
             docker push networkingcat/hello_world:${$CIRCLE_BUILD_NUM}
             docker tag networkingcat/hello_world:${$CIRCLE_BUILD_NUM} networkingcat/hello_world:latest
