@@ -86,7 +86,7 @@ jobs:
     parameters:
       cluster-name:
         description: |
-          forward_capstone
+          Name of Cluster
         type: string
       aws-region:
         description: |
@@ -110,8 +110,8 @@ jobs:
 workflows:
   deployment:
     jobs:
-      - build
-      - docker_stuff:
-          requires: [build]   
+      #- build
+      #- docker_stuff:
+      #    requires: [build]   
       - aws-eks/create-cluster:
-          cluster-name: forward_thomas_eks_cluster          
+          cluster-name: forward-thomas-eks-cluster          
