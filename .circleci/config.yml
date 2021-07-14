@@ -5,8 +5,8 @@ version: 2.1
 
 # Use circleci orbs for easy use
 orbs:
-  aws-eks: circleci/aws-eks@0.2.3
-  kubernetes: circleci/kubernetes@0.4.0
+  aws-eks: circleci/aws-eks@1.1.0
+  kubernetes: circleci/kubernetes@0.12.0
  
 jobs:
   build:
@@ -111,4 +111,4 @@ workflows:
       - aws-eks/create-cluster:
           cluster-name: forward-thomas-eks-cluster
           aws-region: eu-central-1
-          cfn-role-arn: "arn:aws:iam::535601772344:role/udacity-cf"
+          cfn-role-arn: arn:aws:iam::535601772344:role/udacity-cf
