@@ -88,11 +88,6 @@ jobs:
         description: |
           Name of Cluster
         type: string
-      aws-region:
-        description: |
-          AWS region
-        type: string
-        default: "eu-central-1"        
     steps:
       - checkout
       - kubernetes/install
@@ -116,3 +111,4 @@ workflows:
       - aws-eks/create-cluster:
           cluster-name: forward-thomas-eks-cluster
           aws-region: eu-central-1
+          cfn-role-arn: arn:aws:iam::535601772344:role/udacity-cf
