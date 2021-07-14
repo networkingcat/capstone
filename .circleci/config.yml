@@ -82,22 +82,22 @@ jobs:
             docker push networkingcat/hello_world:latest
 
 
-  create_eks:
-    executor: aws-eks/python3
-    parameters:
-      cluster-name:
-        description: |
-          Name of Cluster
-        type: string
-      aws-region:
-        type: string  
-    steps:
-      - checkout
-      - kubernetes/install
-      - aws-eks/create-cluster:
-          cluster-name: << parameters.cluster-name >>
-          cfn-role-arn: arn:aws:iam::535601772344:role/udacity-cf
-          aws-region: << parameters.aws-region >>
+ # create_eks:
+ #   executor: aws-eks/python3
+ #   parameters:
+ #     cluster-name:
+ #       description: |
+ #         Name of Cluster
+ #       type: string
+ #     aws-region:
+ #       type: string  
+ #   steps:
+ #     - checkout
+ #     - kubernetes/install
+ #     - aws-eks/create-cluster:
+ #         cluster-name: << parameters.cluster-name >>
+ #         cfn-role-arn: arn:aws:iam::535601772344:role/udacity-cf
+ #         aws-region: << parameters.aws-region >>
 
   irgendwas:
     executor: aws-eks/python3
@@ -126,7 +126,7 @@ workflows:
       #- build
       #- docker_stuff:
       #    requires: [build]   
-      - create_eks:
+      - aws-eks/create-cluster:
           cluster-name: forward-thomas-eks-cluster
           aws-region: eu-central-1
           
