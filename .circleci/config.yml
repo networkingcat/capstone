@@ -135,13 +135,14 @@ jobs:
 workflows:
   deployment:
     jobs:
-      #- build
-      #- docker_stuff:
-      #    requires: [build]
+      - build
+      - docker_stuff:
+          requires: [build]
       #- aws-eks/create-cluster:
       #    cluster-name: forward-thomas-eks-cluster
       #    aws-region: eu-central-1
       - create_services:
+          requires: [docker_stuff]     
           cluster-name: forward-thomas-eks-cluster
           aws-region: eu-central-1      
       - collect_info:
