@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: helloworldapp
   labels:
-    app: helloworld
+    app: helloworldapp
 spec:
   # automatically create an external load-balanced IP for the service.
   type: LoadBalancer
@@ -12,4 +12,4 @@ spec:
     targetPort: 80
     protocol: TCP
   selector:
-    app: helloworld
+    app: helloworldapp
