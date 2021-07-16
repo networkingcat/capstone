@@ -3,20 +3,20 @@ kind: Deployment
 metadata:
   name: helloworldapp
   labels:
-    app: helloworld
+    app: helloworldapp
 spec:
   selector:
     matchLabels:
-      app: helloworld
+      app: helloworldapp
   replicas: 3
   template:
     metadata:
       labels:
-        app: helloworld
+        app: helloworldapp
     spec:
       containers:
       - name: app
-        image: networkingcat/helo_world
+        image: networkingcat/hello_world
         imagePullPolicy: Always
         resources:
           requests:
