@@ -144,9 +144,9 @@ workflows:
       - create_services:
           requires: [docker_stuff]     
           cluster-name: forward-thomas-eks-cluster
-          aws-region: eu-central-1
-          requires: [create_services]               
+          aws-region: eu-central-1              
       - aws-eks/update-container-image:
+          requires: [create_services]       
           cluster-name: forward-thomas-eks-cluster
           aws-region: eu-central-1
           container-image-updates: helloworldapp=networkingcat/helloworld
