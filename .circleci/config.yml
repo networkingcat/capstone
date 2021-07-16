@@ -129,6 +129,7 @@ jobs:
             kubectl get svc
             kubectl get nodes
             kubectl get deployment
+            kubectl get pods -o wide
 
 
 workflows:
@@ -142,8 +143,9 @@ workflows:
       #    aws-region: eu-central-1
       - create_services:
           cluster-name: forward-thomas-eks-cluster
-          aws-region: eu-central-1
+          aws-region: eu-central-1      
       - collect_info:
+          requires: [create_services]
           cluster-name: forward-thomas-eks-cluster
           aws-region: eu-central-1        
    
