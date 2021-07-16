@@ -149,7 +149,7 @@ workflows:
       #    requires: [create_services]       
           cluster-name: forward-thomas-eks-cluster
           aws-region: eu-central-1
-          container-image-updates: hello_world=networkingcat/hello_world
+          container-image-updates: helloworldapp=networkingcat/hello_world
           record: true
           resource-name: deployment/helloworldapp          
       - collect_info:
