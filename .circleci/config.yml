@@ -91,11 +91,7 @@ jobs:
           cluster name
         type: string
       aws-region:
-        type: string
-      docker-image-name:
-        type: string   
-      version-info:
-        type: string           
+        type: string     
     steps:
       - checkout
       - kubernetes/install
@@ -115,17 +111,10 @@ workflows:
       #- build
       #- docker_stuff:
       #    requires: [build]
-      - aws-ecr/build-and-push-image:
-          name: build-and-push-image
-          repo: hello_world
-          dockerfile: Dockerfile
-          #path: ~/project/demo_app
-          tag: ${CIRCLE_BUILD_NUM}
       #- aws-eks/create-cluster:
       #    cluster-name: forward-thomas-eks-cluster
       #    aws-region: eu-central-1
       - deployment:
           cluster-name: forward-thomas-eks-cluster
           aws-region: eu-central-1
-          docker-image-name: "535601772344.dkr.ecr.eu-central-1.amazonaws.com/forward/hello_world:${CIRCLE_BUILD_NUM}"
-          version-info: "${CIRCLE_BUILD_NUM}"     
+   
