@@ -136,15 +136,15 @@ workflows:
   deployment:
     jobs:
       - build
-      - docker_stuff:
-          requires: [build]
+      #- docker_stuff:
+      #    requires: [build]
       #- aws-eks/create-cluster:
       #    cluster-name: forward-thomas-eks-cluster
       #    aws-region: eu-central-1
-      - create_services:
-          requires: [docker_stuff]     
-          cluster-name: forward-thomas-eks-cluster
-          aws-region: eu-central-1              
+      #- create_services:
+      #    requires: [docker_stuff]     
+      #    cluster-name: forward-thomas-eks-cluster
+      #    aws-region: eu-central-1              
       - aws-eks/update-container-image:
           requires: [create_services]       
           cluster-name: forward-thomas-eks-cluster
@@ -153,7 +153,7 @@ workflows:
           record: true
           resource-name: deployment/helloworldapp          
       - collect_info:
-          requires: [create_services]
+          requires: [aws-eks/update-container-image]
           cluster-name: forward-thomas-eks-cluster
           aws-region: eu-central-1        
    
