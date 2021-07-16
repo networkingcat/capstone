@@ -7,7 +7,7 @@ version: 2.1
 orbs:
   aws-eks: circleci/aws-eks@1.1.0
   kubernetes: circleci/kubernetes@0.12.0
- 
+  aws-ecr: circleci/aws-ecr@7.0.0 
 jobs:
   build:
     docker:
@@ -71,7 +71,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build docker image and upload
+          name: Build docker image and upload to dockerhub
           command: |
             # unsecure, do not use
             # docker login -u networkingcat -p ${DOCKER_PASSWORD}
@@ -105,10 +105,20 @@ workflows:
     jobs:
       #- build
       #- docker_stuff:
-      #    requires: [build]   
+      #    requires: [build]
+      - aws-ecr/build_and_push_image:
+          name: build-and-push-image
+          account-url: 535601772344.dkr.ecr.eu-central-1.amazonaws.com/forward/
+          region: eu-central-1
+          repo: hello_world
+          dockerfile: Dockerfile
+          #path: ~/project/demo_app
+          tag: ${CIRCLE_BUILD_NUM}
       #- aws-eks/create-cluster:
       #    cluster-name: forward-thomas-eks-cluster
       #    aws-region: eu-central-1
       - deployment:
           cluster-name: forward-thomas-eks-cluster
-       
+          aws-region: eu-central-1
+          docker-image-name: "535601772344.dkr.ecr.eu-central-1.amazonaws.com/forward/hello_world:${CIRCLE_SHA1}"
+          version-info: "${CIRCLE_BUILD_NUM}"     
