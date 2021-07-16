@@ -83,7 +83,7 @@ jobs:
             docker push networkingcat/hello_world:latest
 
 
-  deployment:
+  create_services:
     executor: aws-eks/python3
     parameters:
       cluster-name:
@@ -105,7 +105,30 @@ jobs:
           #resource-name: deployment/helloworld
       - kubernetes/create-or-update-resource:
           resource-file-path: app-service.yaml
-          
+
+
+  collect_info:
+    executor: aws-eks/python3
+    parameters:
+      cluster-name:
+        description: |
+          cluster name
+        type: string
+      aws-region:
+        type: string           
+    steps:
+      - kubernetes/install
+      - aws-eks/update-kubeconfig-with-authenticator:
+          cluster-name: << parameters.cluster-name >>
+          aws-region: eu-central-1
+      - run:
+          name: show infor
+          command: |
+            kubectl get svc
+            kubectl get nodes
+            kubectl get deployment
+
+
 workflows:
   deployment:
     jobs:
@@ -115,7 +138,12 @@ workflows:
       #- aws-eks/create-cluster:
       #    cluster-name: forward-thomas-eks-cluster
       #    aws-region: eu-central-1
-      - deployment:
+      - create_services:
           cluster-name: forward-thomas-eks-cluster
           aws-region: eu-central-1
+      - collect_info:
+          cluster-name: forward-thomas-eks-cluster
+          aws-region: eu-central-1        
    
+
+
