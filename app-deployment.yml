@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: app
-        image: DOCKER_IMAGE_NAME
+        image: networkingcat/helo_world
+        imagePullPolicy: Always
         resources:
           requests:
             cpu: 100m
