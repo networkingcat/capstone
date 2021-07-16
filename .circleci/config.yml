@@ -100,9 +100,9 @@ jobs:
           install-kubectl: true
           aws-region: eu-central-1
       - kubernetes/create-or-update-resource:
-          #get-rollout-status: true
+          get-rollout-status: true
           resource-file-path: app-deployment.yml
-          #resource-name: deployment/helloworld
+          resource-name: deployment/helloworldapp
       - kubernetes/create-or-update-resource:
           resource-file-path: app-service.yaml
 
@@ -122,7 +122,7 @@ jobs:
           cluster-name: << parameters.cluster-name >>
           aws-region: eu-central-1
       - run:
-          name: show infor
+          name: show info
           command: |
             kubectl get svc
             kubectl get nodes
