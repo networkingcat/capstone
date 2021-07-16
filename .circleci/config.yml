@@ -90,6 +90,12 @@ jobs:
         description: |
           cluster name
         type: string
+      aws-region:
+        type: string
+      docker-image-name:
+        type: string   
+      version-info:
+        type: string           
     steps:
       - checkout
       - kubernetes/install
