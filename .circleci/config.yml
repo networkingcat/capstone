@@ -85,6 +85,7 @@ jobs:
 
   create_services:
     executor: aws-eks/python3
+    resource_class: small    
     parameters:
       cluster-name:
         description: |
@@ -109,6 +110,7 @@ jobs:
 
   collect_info:
     executor: aws-eks/python3
+    resource_class: small    
     parameters:
       cluster-name:
         description: |
