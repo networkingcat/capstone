@@ -108,6 +108,8 @@ jobs:
           resource-file-path: app-service.yaml
 
 
+
+
   collect_info:
     executor: aws-eks/python3
     resource_class: small    
@@ -151,7 +153,8 @@ workflows:
           aws-region: eu-central-1
           container-image-updates: app=networkingcat/hello_world
           record: true
-          resource-name: deployment/helloworldapp          
+          resource-name: deployment/helloworldapp   
+          get-rollout-status: true
       - collect_info:
           requires: [aws-eks/update-container-image]
           cluster-name: forward-thomas-eks-cluster
