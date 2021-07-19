@@ -155,6 +155,11 @@ workflows:
           record: true
           resource-name: deployment/helloworldapp   
           get-rollout-status: true
+          post-steps:
+              - kubernetes/delete-resource:
+                  resource-names: helloworldapp   
+                  resource-types: deployment
+                  wait: true          
       - collect_info:
           requires: [aws-eks/update-container-image]
           cluster-name: forward-thomas-eks-cluster
