@@ -137,31 +137,31 @@ jobs:
 workflows:
   deployment:
     jobs:
-      - build
-      - docker_stuff:
-          requires: [build]
+      #- build
+      #- docker_stuff:
+      #    requires: [build]
       #- aws-eks/create-cluster:
       #    cluster-name: forward-thomas-eks-cluster
       #    aws-region: eu-central-1
-      - create_services:
-          requires: [docker_stuff]     
-          cluster-name: forward-thomas-eks-cluster
-          aws-region: eu-central-1              
-      - aws-eks/update-container-image:
-          requires: [create_services]       
-          cluster-name: forward-thomas-eks-cluster
-          aws-region: eu-central-1
-          container-image-updates: app=networkingcat/hello_world
-          record: true
-          resource-name: deployment/helloworldapp   
-          get-rollout-status: true
-          post-steps:
-              - kubernetes/delete-resource:
-                  resource-names: helloworldapp   
-                  resource-types: deployment
-                  wait: true          
+      #- create_services:
+      #    requires: [docker_stuff]     
+      #    cluster-name: forward-thomas-eks-cluster
+      #    aws-region: eu-central-1              
+      #- aws-eks/update-container-image:
+      #    requires: [create_services]       
+      #    cluster-name: forward-thomas-eks-cluster
+      #    aws-region: eu-central-1
+      #    container-image-updates: app=networkingcat/hello_world
+      #    record: true
+      #    resource-name: deployment/helloworldapp   
+      #    get-rollout-status: true
+      #    post-steps:
+      #        - kubernetes/delete-resource:
+      #            resource-names: helloworldapp   
+      #            resource-types: deployment
+      #            wait: true          
       - collect_info:
-          requires: [aws-eks/update-container-image]
+      #    requires: [aws-eks/update-container-image]
           cluster-name: forward-thomas-eks-cluster
           aws-region: eu-central-1        
    
